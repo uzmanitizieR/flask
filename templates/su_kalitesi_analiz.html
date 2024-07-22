@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Su Kalitesi Analizi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px 0;
+            color: #007BFF;
+        }
+
+        form {
+            margin: 20px auto;
+            max-width: 500px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .content p {
+            text-align: center;
+            color: #333;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Ana Sayfa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/nehir_analizi">Nehir Analizi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/goruntuanaliz">Görüntü Analizi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/bitki_analizi">Bitki Analizi</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h1>Su Kalitesi Analizi</h1>
+        <p>Su kalitesi analizini yapmak için aşağıdaki formu doldurun ve 'Analiz Yap' butonuna tıklayın.</p>
+    </div>
+
+    <form method="POST" onsubmit="showResult(event)">
+        <label for="ph">pH:</label>
+        <input type="number" name="ph" step="0.01" required><br>
+
+        <label for="hardness">Hardness:</label>
+        <input type="number" name="hardness" required><br>
+
+        <label for="solids">Solids:</label>
+        <input type="number" name="solids" required><br>
+
+        <label for="chloramines">Chloramines:</label>
+        <input type="number" name="chloramines" step="0.01" required><br>
+
+        <label for="sulfate">Sulfate:</label>
+        <input type="number" name="sulfate" required><br>
+
+        <label for="conductivity">Conductivity:</label>
+        <input type="number" name="conductivity" required><br>
+
+        <label for="organic_carbon">Organic Carbon:</label>
+        <input type="number" name="organic_carbon" step="0.01" required><br>
+
+        <label for="trihalomethanes">Trihalomethanes:</label>
+        <input type="number" name="trihalomethanes" step="0.01" required><br>
+
+        <label for="turbidity">Turbidity:</label>
+        <input type="number" name="turbidity" step="0.01" required><br>
+
+        <input type="submit" value="Analiz Yap">
+    </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="resultModalLabel">Analiz Sonucu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="resultText"></p>
+                    <h2>İçilebilir Su Değerleri:</h2>
+                    <ul>
+                        <li>pH: 6.5 - 8.5</li>
+                        <li>Hardness: 0 - 250</li>
+                        <li>Solids: 0 - 500</li>
+                        <li>Chloramines: 0 - 4</li>
+                        <li>Sulfate: 3 - 30</li>
+                        <li>Conductivity: 0 - 400</li>
+                        <li>Organic Carbon: 0 - 2</li>
+                        <li>Trihalomethanes: 0 - 80</li>
+                        <li>Turbidity: 0 - 5</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function showResult(event) {
+            event.preventDefault();
+            let ph = document.querySelector('input[name="ph"]').value;
+            let hardness = document.querySelector('input[name="hardness"]').value;
+            let solids = document.querySelector('input[name="solids"]').value;
+            let chloramines = document.querySelector('input[name="chloramines"]').value;
+            let sulfate = document.querySelector('input[name="sulfate"]').value;
+            let conductivity = document.querySelector('input[name="conductivity"]').value;
+            let organic_carbon = document.querySelector('input[name="organic_carbon"]').value;
+            let trihalomethanes = document.querySelector('input[name="trihalomethanes"]').value;
+            let turbidity = document.querySelector('input[name="turbidity"]').value;
+
+            let resultText = `
+                pH: ${ph}<br>
+                Hardness: ${hardness}<br>
+                Solids: ${solids}<br>
+                Chloramines: ${chloramines}<br>
+                Sulfate: ${sulfate}<br>
+                Conductivity: ${conductivity}<br>
+                Organic Carbon: ${organic_carbon}<br>
+                Trihalomethanes: ${trihalomethanes}<br>
+                Turbidity: ${turbidity}
+            `;
+
+            document.getElementById('resultText').innerHTML = resultText;
+            $('#resultModal').modal('show');
+        }
+    </script>
+</body>
+</html>

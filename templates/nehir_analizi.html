@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Nehir Su Analizi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px 0;
+            color: #007BFF;
+        }
+
+        form {
+            margin: 20px auto;
+            max-width: 500px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nehir Su Analizi</h1>
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/">Su Analizi</a>
+
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/goruntuanaliz">Goruntu analizi</a>
+
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="/bitki_analizi">Bitki Analizi</a>
+
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <form method="POST">
+        <label for="aluminium">Aluminium:</label>
+        <input type="number" name="aluminium" step="0.01" required><br>
+
+        <!-- Diğer elementler için aynı şekilde input alanları ekleyin -->
+        <label for="ammonia">Ammonia:</label>
+        <input type="number" name="ammonia" step="0.01" required><br>
+
+        <label for="arsenic">Arsenic:</label>
+        <input type="number" name="arsenic" step="0.01" required><br>
+        <label for="barium">Barium:</label>
+<input type="number" name="barium" step="0.01" required><br>
+
+<label for="cadmium">Cadmium:</label>
+<input type="number" name="cadmium" step="0.01" required><br>
+
+<label for="chloramine">Chloramine:</label>
+<input type="number" name="chloramine" step="0.01" required><br>
+
+<label for="chromium">Chromium:</label>
+<input type="number" name="chromium" step="0.01" required><br>
+
+<label for="copper">Copper:</label>
+<input type="number" name="copper" step="0.01" required><br>
+
+<label for="flouride">Flouride:</label>
+<input type="number" name="flouride" step="0.01" required><br>
+
+<label for="bacteria">Bacteria:</label>
+<input type="number" name="bacteria" step="0.01" required><br>
+
+<label for="viruses">Viruses:</label>
+<input type="number" name="viruses" step="0.01" required><br>
+
+<label for="lead">Lead:</label>
+<input type="number" name="lead" step="0.01" required><br>
+
+<label for="nitrates">Nitrates:</label>
+<input type="number" name="nitrates" step="0.01" required><br>
+
+<label for="nitrites">Nitrites:</label>
+<input type="number" name="nitrites" step="0.01" required><br>
+
+<label for="mercury">Mercury:</label>
+<input type="number" name="mercury" step="0.01" required><br>
+
+<label for="perchlorate">Perchlorate:</label>
+<input type="number" name="perchlorate" step="0.01" required><br>
+
+<label for="radium">Radium:</label>
+<input type="number" name="radium" step="0.01" required><br>
+
+<label for="selenium">Selenium:</label>
+<input type="number" name="selenium" step="0.01" required><br>
+
+<label for="silver">Silver:</label>
+<input type="number" name="silver" step="0.01" required><br>
+
+<label for="uranium">Uranium:</label>
+<input type="number" name="uranium" step="0.01" required><br>
+
+        <!-- Diğer elementler için aynı şekilde devam edin -->
+
+        <input type="submit" value="Analiz Yap">
+    </form>
+
+    {% if sonuc %}
+        <h2>Analiz Sonucu: {{ sonuc }}</h2>
+    {% endif %}
+</body>
+</html>
